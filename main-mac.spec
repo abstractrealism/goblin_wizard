@@ -39,17 +39,32 @@ exe = EXE(
 
 app = BUNDLE(exe,
          name='Goblin Wizard.app',
-         icon=None,
+         icon='GFX/512logo.icns',
          bundle_identifier=None,
-         version='0.0.1',
+         version='1.0.1',
          info_plist={
+            'CFBundleDisplayName': 'Goblin Wizard',
+            'CFBundleName': 'Goblin Wizard',
             'NSPrincipalClass': 'NSApplication',
             'NSAppleScriptEnabled': False,
+            'UTExportedTypeDeclarations': [
+                {
+                    'UTTypeIdentifier': 'com.midigoblin.goblinwizard',
+                    'UTTypeDescription': 'Goblin Wizard Document',
+                    'UTTypeConformsTo': ['public.text'],  # If it's text-based
+                    'UTTypeTagSpecification': {
+                        # "public.filename-extension": string or array
+                        'public.filename-extension': ['goblinwizard'],
+                        'public.mime-type': 'text/plain'
+                    }
+                }
+            ],
             'CFBundleDocumentTypes': [
                 {
-                    'CFBundleTypeName': 'My File Format',
-                    'CFBundleTypeIconFile': 'MyFileIcon.icns',
-                    'LSItemContentTypes': ['com.midigoblin.myformat'],
+                    'CFBundleTypeName': 'Midi Goblin Wizard File',
+                    'CFBundleTypeRole': 'Editor',
+                    'CFBundleTypeIconFile': '512logo.icns',
+                    'LSItemContentTypes': ['com.midigoblin.goblinwizard'],
                     'LSHandlerRank': 'Owner'
                     }
                 ]
